@@ -1,0 +1,2 @@
+# System package needed for OCR of images and scanned PDFs (the app still works without it and says so honestly):
+#   Debian/Ubuntu:  sudo apt-get install tesseract-ocr tesseract-ocr-eng

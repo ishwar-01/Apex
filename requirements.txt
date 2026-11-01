@@ -1,0 +1,15 @@
+# Tested with Python 3.12. Saved .joblib models require scikit-learn 1.8.x.
+numpy==2.4.4
+pandas==3.0.2
+scikit-learn==1.8.0
+scipy==1.17.1
+matplotlib==3.10.8
+joblib==1.5.3
+shap==0.54.1            # optional: local explanations for gradient boosting (falls back to occlusion without it)
+# Phase 3 application
+streamlit==1.66.1
+reportlab==4.4.10       # PDF reports
+pypdf==5.9.0            # text-layer PDF extraction
+Pillow==12.1.1
+pytesseract==0.3.13     # OCR wrapper: needs the Tesseract binary (see packages.txt)
+pypdfium2==5.6.0        # renders scanned PDF pages for OCR

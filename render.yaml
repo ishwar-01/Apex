@@ -1,0 +1,24 @@
+# Render Blueprint for the Loan Intelligence application (same app as local; nothing removed or simplified).
+# NOTE: a persistent disk requires a PAID instance type (Render free instances have no disk and would lose all data on every restart).
+services:
+  - type: web
+    name: loan-intelligence
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter            # 512 MB RAM. If the app is slow or restarts under load, move to "standard" (2 GB).
+    region: singapore        # closest Render region to India
+    healthCheckPath: /_stcore/health
+    autoDeploy: false        # redeploy manually so a push never restarts a service holding live data
+    disk:
+      name: loan-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: LOAN_APP_DATA_DIR            # database, uploads and reports all live on the persistent disk
+        value: /var/data/loan_app
+      - key: LOAN_APP_REQUIRE_ENV_PASSWORDS
+        value: "1"
+      - key: LOAN_APP_ADMIN_PASSWORD      # you type these in the Render dashboard; they are never stored in the repository
+        sync: false
+      - key: LOAN_APP_OFFICER_PASSWORD
+        sync: false
